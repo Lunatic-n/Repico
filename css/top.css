@@ -61,7 +61,7 @@ button{
 .logo-image{
     height:150px;
     width:auto;
-    max-width:100%;
+    max-width:150%;
     object-fit:contain;
 }
 
