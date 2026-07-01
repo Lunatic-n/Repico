@@ -1,3 +1,12 @@
+:root{
+    --background-color:#f7f7fb;
+    --text-color:#333;
+    --main-color:#8a7cff;
+    --sub-color:#eee9ff;
+    --border-color:#ddd;
+    --shadow-color:rgba(0,0,0,0.08);
+}
+
 /* ===========================
    ベースリセット
 =========================== */
