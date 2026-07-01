@@ -1,71 +1,38 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<a href="index.html" class="back-button">←</a>
 
-<link rel="stylesheet" href="css/top.css">
-</head>
+<div class="create-card">
 
-<body>
+    <div class="photo-box">📷 写真追加</div>
 
-<div class="app-container">
+    <input class="input-title" placeholder="タイトル">
 
-<header class="header">
+    <textarea class="input-desc" placeholder="説明"></textarea>
 
-    <h2 class="page-title">レシピ作成</h2>
+    <input class="input-tags" placeholder="タグ">
 
-    <a href="index.html" class="back-button">← 戻る</a>
-
-</header>
-
-<section class="create-area">
-
-    <div class="create-card">
-
-        <h2 class="create-title">レシピ作成</h2>
-
-        <input class="input-title" placeholder="レシピ名">
-
-        <input class="input-people" type="number" placeholder="人数">
-
-        <input class="input-time" placeholder="時間（例：30分）">
-
-        <input class="input-tags" placeholder="タグ（カンマ区切り）">
-
-        <!-- 材料 -->
-        <div class="block">
-            <h3>材料</h3>
-            <div id="ingredient-list"></div>
-            <button type="button" class="mini-button" id="add-ingredient">＋材料追加</button>
-        </div>
-
-        <!-- カテゴリー -->
-        <div class="block">
-            <h3>カテゴリー</h3>
-            <div id="category-list"></div>
-            <button type="button" class="mini-button" id="add-category">＋カテゴリー追加</button>
-        </div>
-
-        <!-- 手順 -->
-        <div class="block">
-            <h3>手順</h3>
-            <div id="step-list"></div>
-            <button type="button" class="mini-button" id="add-step">＋手順追加</button>
-        </div>
-
-        <!-- 補足 -->
-        <textarea class="input-note" placeholder="補足（任意）"></textarea>
-
-        <button class="save-button">💾 保存</button>
-
+    <div class="row">
+        <input class="input-people" placeholder="👥人数">
+        <input class="input-time" placeholder="⏱調理時間">
     </div>
 
-</section>
+    <div class="divider"></div>
+
+    <h3>材料</h3>
+    <button>＋材料追加</button>
+    <button>＋カテゴリー追加</button>
+
+    <div class="divider"></div>
+
+    <h3>手順</h3>
+    <button>＋手順追加</button>
+
+    <div class="divider"></div>
+
+    <h3>補足</h3>
+    <textarea class="input-note"></textarea>
+
+    <div class="divider"></div>
+
+    <button class="save-button">💾 保存</button>
 
 </div>
-
-<script type="module" src="js/create.js"></script>
-
-</body>
-</html>
