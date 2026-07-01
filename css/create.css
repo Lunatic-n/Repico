@@ -6,10 +6,6 @@
     --shadow-color:rgba(0,0,0,0.06);
 }
 
-/* ===========================
-   ベース
-=========================== */
-
 *{
     margin:0;
     padding:0;
@@ -28,10 +24,6 @@ body{
     padding:16px;
 }
 
-/* ===========================
-   戻る
-=========================== */
-
 .back-button{
     display:inline-block;
     margin-bottom:10px;
@@ -39,51 +31,36 @@ body{
     text-decoration:none;
 }
 
-/* ===========================
-   カード全体
-=========================== */
-
 .create-card{
     display:flex;
     flex-direction:column;
     gap:12px;
-
     padding:18px;
-
     background:#fff;
     border:1px solid var(--border-color);
     border-radius:16px;
-
     box-shadow:0 2px 10px var(--shadow-color);
 }
 
-/* ===========================
-   写真（4:3・スマホ安定）
-=========================== */
-
+/* 画像 */
 .photo-box{
     width:100%;
     aspect-ratio:4 / 3;
-
     border:2px dashed var(--border-color);
     border-radius:14px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
-    cursor:pointer;
     position:relative;
     overflow:hidden;
+    cursor:pointer;
 }
 
-/* カメラアイコン */
 .photo-box::after{
     content:"📷";
     font-size:28px;
     opacity:0.6;
     position:absolute;
-    pointer-events:none;
 }
 
 .photo-box.has-image::after{
@@ -94,53 +71,23 @@ body{
     width:100%;
     height:100%;
     object-fit:cover;
+    display:block;
 }
 
-/* ===========================
-   入力（全部統一）
-=========================== */
-
+/* 入力 */
 .input-title,
 .input-desc,
 .input-tags,
 .input-people,
 .input-time,
-.input-note,
-.ingredient-row input,
-.step-row textarea{
+.input-note{
     width:100%;
     padding:10px 12px;
-
     border:1px solid var(--border-color);
     border-radius:10px;
-
     font-size:14px;
     background:#fafafa;
-
-    font-family:'Kiwi Maru', sans-serif;
-    box-sizing:border-box;
 }
-
-/* テキストエリア */
-.input-desc,
-.input-note{
-    min-height:80px;
-    resize:none;
-}
-
-/* フォーカス */
-.input-title:focus,
-.input-desc:focus,
-.input-tags:focus,
-.input-people:focus,
-.input-time:focus,
-.input-note:focus{
-    outline:2px solid var(--main-color);
-}
-
-/* ===========================
-   横並び
-=========================== */
 
 .row{
     display:flex;
@@ -149,12 +96,15 @@ body{
 
 .row input{
     flex:1;
-    min-width:0;
 }
 
-/* ===========================
-   材料・手順行
-=========================== */
+/* リスト */
+#ingredient-list,
+#step-list{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
 
 .ingredient-row,
 .step-row{
@@ -165,31 +115,18 @@ body{
 
 .step-num{
     min-width:20px;
-    font-weight:bold;
 }
 
-/* ===========================
-   ×ボタン（丸SVG風）
-=========================== */
-
+/* 削除ボタン */
 .remove-btn{
     width:28px;
     height:28px;
-
     border-radius:50%;
     border:1px solid var(--border-color);
-
     background:#fff;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    cursor:pointer;
     position:relative;
 }
 
-/* ×（SVG風クロス） */
 .remove-btn::before,
 .remove-btn::after{
     content:"";
@@ -197,62 +134,24 @@ body{
     width:12px;
     height:2px;
     background:var(--text-color);
-    border-radius:2px;
+    top:50%;
+    left:50%;
+    transform-origin:center;
 }
 
 .remove-btn::before{
-    transform:rotate(45deg);
+    transform:translate(-50%,-50%) rotate(45deg);
 }
 
 .remove-btn::after{
-    transform:rotate(-45deg);
+    transform:translate(-50%,-50%) rotate(-45deg);
 }
 
-.remove-btn:hover{
-    transform:scale(1.05);
-}
-
-/* ===========================
-   区切り線
-=========================== */
-
-.divider{
-    height:1px;
-    background:var(--border-color);
-    margin:6px 0;
-}
-
-/* ===========================
-   /* 小ボタン */
-=========================== */
-
-.mini-button{
-    padding:6px 10px;
-    border-radius:8px;
-    border:1px solid var(--border-color);
-    background:#fafafa;
-    cursor:pointer;
-}
-
-/* ===========================
-   保存ボタン（横長丸）
-=========================== */
-
+/* 保存 */
 .save-button{
     padding:14px;
     border-radius:999px;
-
     background:var(--main-color);
     color:#fff;
-
-    font-size:16px;
     font-weight:bold;
-
-    cursor:pointer;
-}
-
-
-
-.save-button:active{
-    transform:scale(0.98);
 }
