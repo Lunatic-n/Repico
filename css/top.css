@@ -59,9 +59,9 @@ button{
 }
 
 .logo-image{
-    height:56px;
+    height:400px;
     width:auto;
-    max-width:300px;
+    max-width:1000px;
     object-fit:contain;
 }
 
