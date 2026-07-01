@@ -5,6 +5,7 @@
     align-items:center;
     gap:12px;
     margin-bottom:24px;
+    outline:3px solid red;
 
 }
 
@@ -32,12 +33,10 @@
 .header-bar{
 
     width:100%;
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
+    outline:3px solid blue;
 
 }
 
@@ -45,7 +44,6 @@
 .header-buttons-left{
 
     display:flex;
-
     gap:10px;
 
 }
