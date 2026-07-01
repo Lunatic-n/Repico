@@ -223,6 +223,18 @@ body{
 }
 
 /* ===========================
+   /* 小ボタン */
+=========================== */
+
+.mini-button{
+    padding:6px 10px;
+    border-radius:8px;
+    border:1px solid var(--border-color);
+    background:#fafafa;
+    cursor:pointer;
+}
+
+/* ===========================
    保存ボタン（横長丸）
 =========================== */
 
@@ -238,6 +250,8 @@ body{
 
     cursor:pointer;
 }
+
+
 
 .save-button:active{
     transform:scale(0.98);
