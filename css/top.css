@@ -159,3 +159,45 @@ padding-bottom: calc(24px + env(safe-area-inset-bottom));
     font-weight:bold;
 
 }
+
+/* ===========================
+   ロゴ
+=========================== */
+
+.logo-area{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:10px;
+
+}
+
+.logo-image{
+
+    height:34px;
+
+    width:auto;
+
+    max-width:160px;
+
+    object-fit:contain;
+
+}
+
+/* ===========================
+   ヘッダーボタン列
+=========================== */
+
+.header-buttons{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
