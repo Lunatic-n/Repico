@@ -1,0 +1,19 @@
+:root {
+
+    --main-color: #d8c5ff;
+
+    --sub-color: #f7f3ff;
+
+    --background-color: #ffffff;
+
+    --text-color: #333333;
+
+    --border-color: #e4dcf5;
+
+    --shadow-color: rgba(0,0,0,0.08);
+
+    --button-size: 48px;
+
+    --border-radius: 20px;
+
+}
