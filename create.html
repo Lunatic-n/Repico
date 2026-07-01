@@ -21,15 +21,45 @@
 
 <section class="create-area">
 
-    <input class="input-title" placeholder="レシピ名">
+    <div class="create-card">
 
-    <input class="input-people" type="number" placeholder="人数">
+        <h2 class="create-title">レシピ作成</h2>
 
-    <input class="input-time" placeholder="時間（例：30分）">
+        <input class="input-title" placeholder="レシピ名">
 
-    <input class="input-tags" placeholder="タグ（カンマ区切り）">
+        <input class="input-people" type="number" placeholder="人数">
 
-    <button class="save-button">＋ 保存</button>
+        <input class="input-time" placeholder="時間（例：30分）">
+
+        <input class="input-tags" placeholder="タグ（カンマ区切り）">
+
+        <!-- 材料 -->
+        <div class="block">
+            <h3>材料</h3>
+            <div id="ingredient-list"></div>
+            <button type="button" class="mini-button" id="add-ingredient">＋材料追加</button>
+        </div>
+
+        <!-- カテゴリー -->
+        <div class="block">
+            <h3>カテゴリー</h3>
+            <div id="category-list"></div>
+            <button type="button" class="mini-button" id="add-category">＋カテゴリー追加</button>
+        </div>
+
+        <!-- 手順 -->
+        <div class="block">
+            <h3>手順</h3>
+            <div id="step-list"></div>
+            <button type="button" class="mini-button" id="add-step">＋手順追加</button>
+        </div>
+
+        <!-- 補足 -->
+        <textarea class="input-note" placeholder="補足（任意）"></textarea>
+
+        <button class="save-button">💾 保存</button>
+
+    </div>
 
 </section>
 
