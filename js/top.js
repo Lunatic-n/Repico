@@ -80,3 +80,7 @@ searchInput.addEventListener("input", (e) => {
 
 // 初期表示
 renderRecipes(recipes);
+
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js");
+}
