@@ -5,9 +5,19 @@ const list = document.querySelector(".recipe-list");
 const searchInput = document.querySelector(".search-input");
 const countEl = document.getElementById("recipe-count-number");
 
+const titleInput = document.querySelector(".input-title");
+const peopleInput = document.querySelector(".input-people");
+const timeInput = document.querySelector(".input-time");
+const tagsInput = document.querySelector(".input-tags");
+const saveButton = document.querySelector(".save-button");
+
 let db;
 let recipes = [];
 let filtered = [];
+
+/* ===========================
+   DB
+=========================== */
 
 function openDB(){
     return new Promise((resolve, reject) => {
@@ -21,10 +31,7 @@ function openDB(){
             }
         };
 
-        request.onsuccess = (e) => {
-            resolve(e.target.result);
-        };
-
+        request.onsuccess = (e) => resolve(e.target.result);
         request.onerror = () => reject();
     });
 }
@@ -48,6 +55,10 @@ function saveRecipe(recipe){
         tx.oncomplete = () => resolve();
     });
 }
+
+/* ===========================
+   描画
+=========================== */
 
 function render(data){
 
@@ -82,6 +93,10 @@ function render(data){
     countEl.textContent = data.length;
 }
 
+/* ===========================
+   検索
+=========================== */
+
 function filter(keyword){
 
     if (!keyword) {
@@ -100,17 +115,40 @@ searchInput.addEventListener("input", (e) => {
     filter(e.target.value);
 });
 
+/* ===========================
+   保存
+=========================== */
+
+saveButton.addEventListener("click", async () => {
+
+    const newRecipe = {
+        title: titleInput.value,
+        people: Number(peopleInput.value || 1),
+        time: timeInput.value,
+        tags: tagsInput.value.split(",").map(t => t.trim()).filter(Boolean)
+    };
+
+    await saveRecipe(newRecipe);
+
+    recipes = await getAllRecipes();
+    filter("");
+
+    titleInput.value = "";
+    peopleInput.value = "";
+    timeInput.value = "";
+    tagsInput.value = "";
+});
+
+/* ===========================
+   初期化
+=========================== */
+
 async function init(){
 
     db = await openDB();
 
     recipes = await getAllRecipes();
 
-    filtered = [...recipes];
-
-    render(recipes);
-
-    // テスト用（初回だけ入れる）
     if (recipes.length === 0) {
 
         await saveRecipe({
@@ -128,8 +166,9 @@ async function init(){
         });
 
         recipes = await getAllRecipes();
-        render(recipes);
     }
+
+    filter("");
 }
 
 init();
