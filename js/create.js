@@ -58,8 +58,11 @@ photoInput.addEventListener("change", (e) => {
 
     const reader = new FileReader();
     reader.onload = () => {
+
+        photoBox.classList.add("has-image");
         photoBox.innerHTML = `<img src="${reader.result}">`;
     };
+
     reader.readAsDataURL(file);
 });
 
