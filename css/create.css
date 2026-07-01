@@ -3,30 +3,65 @@
 =========================== */
 
 .create-area{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
     margin-top:20px;
 }
 
+.create-card{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+
+    padding:18px;
+
+    background:#fff;
+    border:1px solid var(--border-color);
+    border-radius:16px;
+
+    box-shadow:0 2px 10px var(--shadow-color);
+}
+
+.create-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:4px;
+}
+
+/* 入力共通 */
 .input-title,
 .input-people,
 .input-time,
-.input-tags{
+.input-tags,
+.input-note{
     padding:10px 12px;
     border:1px solid var(--border-color);
     border-radius:10px;
     font-family:'Kiwi Maru', sans-serif;
     font-size:14px;
+    background:#fafafa;
 }
 
+.input-note{
+    min-height:70px;
+    resize:none;
+}
+
+/* フォーカス */
+.input-title:focus,
+.input-people:focus,
+.input-time:focus,
+.input-tags:focus,
+.input-note:focus{
+    outline:2px solid var(--main-color);
+    background:#fff;
+}
+
+/* 保存ボタン */
 .save-button{
     padding:14px;
     border-radius:12px;
     background:var(--main-color);
     color:white;
     font-weight:bold;
-    font-family:'Kiwi Maru', sans-serif;
     font-size:16px;
     transition:.2s;
 }
@@ -39,13 +74,7 @@
     transform:scale(0.98);
 }
 
-/* ヘッダー系（作成ページ用軽量） */
-
-.page-title{
-    font-size:18px;
-    font-weight:bold;
-}
-
+/* 戻る */
 .back-button{
     display:inline-block;
     margin-top:8px;
