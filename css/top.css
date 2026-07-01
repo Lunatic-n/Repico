@@ -1,10 +1,10 @@
 :root{
-    --background-color:#7981c7;
+    --background-color:#fbf5fc;
     --text-color:#333;
     --main-color:#8a7cff;
     --sub-color:#eee9ff;
-    --border-color:#ddd;
-    --shadow-color:rgba(0,0,0,0.08);
+    --border-color:#a999e0;
+    --shadow-color:rgba(187,183,199,0.08);
 }
 
 /* ===========================
