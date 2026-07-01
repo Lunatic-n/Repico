@@ -1,0 +1,161 @@
+.header{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+margin-bottom:24px;
+
+}
+
+.header-left{
+
+display:flex;
+
+gap:10px;
+
+}
+
+.site-title{
+
+font-size:28px;
+
+font-weight:bold;
+
+}
+
+.icon-button{
+
+width:48px;
+
+height:48px;
+
+border:none;
+
+border-radius:50%;
+
+background:var(--sub-color);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+cursor:pointer;
+
+transition:.2s;
+
+}
+
+.icon-button:hover{
+
+transform:scale(1.05);
+
+}
+
+.icon-button img{
+
+width:22px;
+
+height:22px;
+
+}
+
+.search-area{
+
+margin-bottom:28px;
+
+}
+
+.search-box{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:12px 16px;
+
+background:white;
+
+border:1px solid var(--border-color);
+
+border-radius:999px;
+
+box-shadow:0 2px 8px var(--shadow-color);
+
+}
+
+.search-icon{
+
+width:18px;
+
+height:18px;
+
+opacity:.55;
+
+}
+
+.search-input{
+
+width:100%;
+
+border:none;
+
+background:none;
+
+font-size:16px;
+
+}
+
+.recipe-list{
+
+display:flex;
+
+flex-direction:column;
+
+gap:16px;
+
+padding-bottom: calc(24px + env(safe-area-inset-bottom));
+
+}
+
+/* ===========================
+   レシピ件数
+=========================== */
+
+.recipe-summary{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:16px;
+
+}
+
+.recipe-count{
+
+    font-size:14px;
+
+    color:#666666;
+
+    font-weight:600;
+
+}
+
+#recipe-count-number{
+
+    color:var(--main-color);
+
+    font-size:16px;
+
+    font-weight:bold;
+
+}
