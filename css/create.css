@@ -64,10 +64,24 @@ body{
     overflow:hidden;
 }
 
+/* カメラアイコンは画像が無い時だけ */
 .photo-box::after{
     content:"📷";
     font-size:28px;
     opacity:0.6;
+    position:absolute;
+    pointer-events:none;
+}
+
+/* 画像ある時はアイコン消す */
+.photo-box.has-image::after{
+    display:none;
+}
+
+.photo-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
 /* 画像プレビュー */
