@@ -6,6 +6,10 @@
     --shadow-color:rgba(0,0,0,0.06);
 }
 
+/* ===========================
+   ベース
+=========================== */
+
 *{
     margin:0;
     padding:0;
@@ -24,7 +28,10 @@ body{
     padding:16px;
 }
 
-/* 戻る */
+/* ===========================
+   戻る
+=========================== */
+
 .back-button{
     display:inline-block;
     margin-bottom:10px;
@@ -32,7 +39,10 @@ body{
     text-decoration:none;
 }
 
-/* カード */
+/* ===========================
+   カード全体
+=========================== */
+
 .create-card{
     display:flex;
     flex-direction:column;
@@ -48,7 +58,7 @@ body{
 }
 
 /* ===========================
-   写真（4:3）
+   写真（4:3・スマホ安定）
 =========================== */
 
 .photo-box{
@@ -67,7 +77,7 @@ body{
     overflow:hidden;
 }
 
-/* カメラアイコン（画像ない時だけ） */
+/* カメラアイコン */
 .photo-box::after{
     content:"📷";
     font-size:28px;
@@ -87,7 +97,7 @@ body{
 }
 
 /* ===========================
-   入力統一
+   入力（全部統一）
 =========================== */
 
 .input-title,
@@ -108,14 +118,17 @@ body{
     background:#fafafa;
 
     font-family:'Kiwi Maru', sans-serif;
+    box-sizing:border-box;
 }
 
+/* テキストエリア */
 .input-desc,
 .input-note{
     min-height:80px;
     resize:none;
 }
 
+/* フォーカス */
 .input-title:focus,
 .input-desc:focus,
 .input-tags:focus,
@@ -140,7 +153,7 @@ body{
 }
 
 /* ===========================
-   材料・手順
+   材料・手順行
 =========================== */
 
 .ingredient-row,
@@ -156,7 +169,7 @@ body{
 }
 
 /* ===========================
-   削除ボタン
+   ×ボタン（丸SVG風）
 =========================== */
 
 .remove-btn{
@@ -173,24 +186,40 @@ body{
     justify-content:center;
 
     cursor:pointer;
+    position:relative;
+}
+
+/* ×（SVG風クロス） */
+.remove-btn::before,
+.remove-btn::after{
+    content:"";
+    position:absolute;
+    width:12px;
+    height:2px;
+    background:var(--text-color);
+    border-radius:2px;
+}
+
+.remove-btn::before{
+    transform:rotate(45deg);
+}
+
+.remove-btn::after{
+    transform:rotate(-45deg);
+}
+
+.remove-btn:hover{
+    transform:scale(1.05);
 }
 
 /* ===========================
-   区切り
+   区切り線
 =========================== */
 
 .divider{
     height:1px;
     background:var(--border-color);
     margin:6px 0;
-}
-
-/* ===========================
-   小ボタン
-=========================== */
-
-button{
-    cursor:pointer;
 }
 
 /* ===========================
@@ -206,6 +235,8 @@ button{
 
     font-size:16px;
     font-weight:bold;
+
+    cursor:pointer;
 }
 
 .save-button:active{
