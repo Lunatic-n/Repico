@@ -101,6 +101,11 @@ button{
     height:22px;
 }
 
+.icon-button:focus{
+    outline:2px solid var(--main-color);
+    outline-offset:2px;
+}
+
 /* ===========================
    検索エリア
 =========================== */
@@ -134,6 +139,13 @@ button{
     border:none;
     background:none;
     font-size:16px;
+}
+
+/* フォーカス可視化（検索） */
+.search-input:focus{
+    outline:2px solid var(--main-color);
+    outline-offset:2px;
+    border-radius:8px;
 }
 
 /* ===========================
