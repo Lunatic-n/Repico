@@ -77,32 +77,26 @@ body{
     object-fit:cover;
 }
 
-/* 入力 */
+/* 入力系を全部統一 */
 .input-title,
 .input-desc,
 .input-tags,
 .input-people,
 .input-time,
-.input-note{
+.input-note,
+.ingredient-row input,
+.step-row textarea{
+    width:100%;
     padding:10px 12px;
+
     border:1px solid var(--border-color);
     border-radius:10px;
+
     font-size:14px;
-}
+    background:#fafafa;
 
-.input-desc,
-.input-note{
-    min-height:70px;
-    resize:none;
-}
-
-.input-title:focus,
-.input-desc:focus,
-.input-tags:focus,
-.input-people:focus,
-.input-time:focus,
-.input-note:focus{
-    outline:2px solid var(--main-color);
+    font-family:'Kiwi Maru', sans-serif;
+    box-sizing:border-box;
 }
 
 /* 横並び */
