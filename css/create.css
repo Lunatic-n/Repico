@@ -1,25 +1,53 @@
-/* ===========================
-   作成カード全体
-=========================== */
+:root{
+    --background-color:#fbf5fc;
+    --text-color:#333;
+    --main-color:#8a7cff;
+    --border-color:#e5dcff;
+    --shadow-color:rgba(0,0,0,0.06);
+}
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Kiwi Maru', sans-serif;
+}
+
+body{
+    background:var(--background-color);
+    color:var(--text-color);
+}
+
+.app-container{
+    max-width:600px;
+    margin:auto;
+    padding:16px;
+}
+
+/* 戻る */
+.back-button{
+    display:inline-block;
+    margin-bottom:10px;
+    color:var(--main-color);
+    text-decoration:none;
+}
+
+/* カード */
 .create-card{
     display:flex;
     flex-direction:column;
-    gap:16px;
+    gap:12px;
 
     padding:18px;
 
     background:#fff;
     border:1px solid var(--border-color);
-    border-radius:18px;
+    border-radius:16px;
 
     box-shadow:0 2px 10px var(--shadow-color);
 }
 
-/* ===========================
-   写真追加（3:4枠）
-=========================== */
-
+/* 写真3:4 */
 .photo-box{
     width:100%;
     aspect-ratio:3 / 4;
@@ -31,37 +59,25 @@
     align-items:center;
     justify-content:center;
 
-    background:#fafafa;
     cursor:pointer;
-
     position:relative;
     overflow:hidden;
-    transition:.2s;
 }
 
-.photo-box:hover{
-    background:#f3f3ff;
-}
-
-/* 中央アイコン */
-.photo-box::before{
+.photo-box::after{
     content:"📷";
     font-size:28px;
-    opacity:.6;
+    opacity:0.6;
 }
 
-/* 画像入った時 */
+/* 画像プレビュー */
 .photo-box img{
-    position:absolute;
     width:100%;
     height:100%;
     object-fit:cover;
 }
 
-/* ===========================
-   入力
-=========================== */
-
+/* 入力 */
 .input-title,
 .input-desc,
 .input-tags,
@@ -71,11 +87,7 @@
     padding:10px 12px;
     border:1px solid var(--border-color);
     border-radius:10px;
-
-    font-family:'Kiwi Maru', sans-serif;
     font-size:14px;
-
-    background:#fafafa;
 }
 
 .input-desc,
@@ -91,13 +103,9 @@
 .input-time:focus,
 .input-note:focus{
     outline:2px solid var(--main-color);
-    background:#fff;
 }
 
-/* ===========================
-   横並び（人数・時間）
-=========================== */
-
+/* 横並び */
 .row{
     display:flex;
     gap:10px;
@@ -107,53 +115,32 @@
     flex:1;
 }
 
-/* ===========================
-   区切り線
-=========================== */
-
+/* 区切り */
 .divider{
     height:1px;
     background:var(--border-color);
-    opacity:.6;
 }
 
-/* ===========================
-   保存ボタン（横長丸）
-=========================== */
+/* 小ボタン */
+.mini-button{
+    padding:6px 10px;
+    border-radius:8px;
+    border:1px solid var(--border-color);
+    background:#fafafa;
+    cursor:pointer;
+}
 
+/* 保存ボタン */
 .save-button{
     padding:14px;
-
     border-radius:999px;
-
     background:var(--main-color);
     color:#fff;
-
-    font-weight:bold;
     font-size:16px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    transition:.2s;
-}
-
-.save-button:hover{
-    transform:scale(1.03);
+    font-weight:bold;
+    cursor:pointer;
 }
 
 .save-button:active{
     transform:scale(0.98);
-}
-
-/* ===========================
-   見出し
-=========================== */
-
-h3{
-    font-size:14px;
-    font-weight:bold;
-    color:#555;
-    margin-top:4px;
 }
