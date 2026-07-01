@@ -13,21 +13,20 @@
 
 <div class="app-container">
 
-<a href="index.html" class="back-button">← 戻る</a>
+<a href="index.html" class="back-button">←</a>
 
 <div class="create-card">
 
-    <!-- 写真 -->
     <label class="photo-box">
-        <img class="photo-preview" alt="">
-        <input type="file" accept="image/*" id="photo-input" hidden>
+        <img class="photo-preview">
+        <input type="file" id="photo-input" accept="image/*" hidden>
     </label>
 
     <input class="input-title" placeholder="タイトル">
 
     <textarea class="input-desc" placeholder="説明"></textarea>
 
-    <input class="input-tags" placeholder="タグ（カンマ区切り）">
+    <input class="input-tags" placeholder="タグ">
 
     <div class="row">
         <input class="input-people" placeholder="👥人数">
@@ -37,13 +36,13 @@
     <div class="divider"></div>
 
     <h3>材料</h3>
-    <button type="button" class="mini-button" id="add-ingredient">＋材料追加</button>
+    <button id="add-ingredient">＋材料追加</button>
     <div id="ingredient-list"></div>
 
     <div class="divider"></div>
 
     <h3>手順</h3>
-    <button type="button" class="mini-button" id="add-step">＋手順追加</button>
+    <button id="add-step">＋手順追加</button>
     <div id="step-list"></div>
 
     <div class="divider"></div>
@@ -58,7 +57,7 @@
 
 </div>
 
-<script src="js/create.js"></script>
+<script src="js/create.js" type="module"></script>
 
 </body>
 </html>
