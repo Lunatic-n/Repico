@@ -1,0 +1,55 @@
+/* ===========================
+   作成ページ（create.html専用）
+=========================== */
+
+.create-area{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:20px;
+}
+
+.input-title,
+.input-people,
+.input-time,
+.input-tags{
+    padding:10px 12px;
+    border:1px solid var(--border-color);
+    border-radius:10px;
+    font-family:'Kiwi Maru', sans-serif;
+    font-size:14px;
+}
+
+.save-button{
+    padding:14px;
+    border-radius:12px;
+    background:var(--main-color);
+    color:white;
+    font-weight:bold;
+    font-family:'Kiwi Maru', sans-serif;
+    font-size:16px;
+    transition:.2s;
+}
+
+.save-button:hover{
+    transform:scale(1.03);
+}
+
+.save-button:active{
+    transform:scale(0.98);
+}
+
+/* ヘッダー系（作成ページ用軽量） */
+
+.page-title{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.back-button{
+    display:inline-block;
+    margin-top:8px;
+    color:var(--main-color);
+    text-decoration:none;
+    font-size:14px;
+}
