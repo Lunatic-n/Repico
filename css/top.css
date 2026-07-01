@@ -149,6 +149,10 @@ button{
     font-size:16px;
 }
 
+.search-input:focus{
+    outline:none;
+}
+
 /* ===========================
    レシピ件数
 =========================== */
