@@ -3,6 +3,10 @@ const STORE_NAME = "recipes";
 
 let db;
 
+/* ===========================
+   DB初期化
+=========================== */
+
 function openDB(){
     return new Promise((resolve) => {
         const request = indexedDB.open(DB_NAME, 1);
@@ -18,15 +22,6 @@ function openDB(){
     });
 }
 
-function saveRecipe(recipe){
-    return new Promise((resolve) => {
-        const tx = db.transaction(STORE_NAME, "readwrite");
-        const store = tx.objectStore(STORE_NAME);
-        store.add(recipe);
-        tx.oncomplete = () => resolve();
-    });
-}
-
 async function init(){
     db = await openDB();
 }
@@ -37,23 +32,49 @@ init();
    保存処理
 =========================== */
 
+function saveRecipe(recipe){
+    return new Promise((resolve) => {
+        const tx = db.transaction(STORE_NAME, "readwrite");
+        const store = tx.objectStore(STORE_NAME);
+
+        store.add(recipe);
+
+        tx.oncomplete = () => resolve();
+    });
+}
+
+/* ===========================
+   保存ボタン
+=========================== */
+
 document.querySelector(".save-button").addEventListener("click", async () => {
 
-    const title = document.querySelector(".input-title").value;
+    const title = document.querySelector(".input-title").value.trim();
     const people = document.querySelector(".input-people").value;
-    const time = document.querySelector(".input-time").value;
+    const time = document.querySelector(".input-time").value.trim();
     const tags = document.querySelector(".input-tags").value;
+
+    if (!title) {
+        alert("レシピ名");
+        return;
+    }
+
+    const ok = confirm("レシピを保存しますか？");
+
+    if (!ok) return;
 
     const newRecipe = {
         title,
         people: Number(people || 1),
         time,
-        tags: tags.split(",").map(t => t.trim()).filter(Boolean)
+        tags: tags
+            ? tags.split(",").map(t => t.trim()).filter(Boolean)
+            : []
     };
 
     await saveRecipe(newRecipe);
 
-    alert("保存したで😎");
+    alert("保存しました！");
 
     location.href = "index.html";
 });
