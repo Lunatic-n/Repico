@@ -26,6 +26,38 @@
 }
 
 /* ===========================
+   ヘッダーバー（左右分離）
+=========================== */
+
+.header-bar{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+/* 左：❓＋ */
+.header-buttons-left{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+/* 右：🔁 */
+.header-buttons-right{
+
+    display:flex;
+
+}
+
+/* ===========================
    ロゴ
 =========================== */
 
