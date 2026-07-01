@@ -1,14 +1,32 @@
-<a href="index.html" class="back-button">←</a>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/create.css">
+
+<title>レシピ作成</title>
+</head>
+
+<body>
+
+<div class="app-container">
+
+<a href="index.html" class="back-button">← 戻る</a>
 
 <div class="create-card">
 
-    <div class="photo-box">📷 写真追加</div>
+    <!-- 写真 -->
+    <label class="photo-box">
+        <input type="file" accept="image/*" hidden id="photo-input">
+    </label>
 
     <input class="input-title" placeholder="タイトル">
 
     <textarea class="input-desc" placeholder="説明"></textarea>
 
-    <input class="input-tags" placeholder="タグ">
+    <input class="input-tags" placeholder="タグ（カンマ区切り）">
 
     <div class="row">
         <input class="input-people" placeholder="👥人数">
@@ -18,21 +36,28 @@
     <div class="divider"></div>
 
     <h3>材料</h3>
-    <button>＋材料追加</button>
-    <button>＋カテゴリー追加</button>
+    <button type="button" class="mini-button" id="add-ingredient">＋材料追加</button>
+    <div id="ingredient-list"></div>
 
     <div class="divider"></div>
 
     <h3>手順</h3>
-    <button>＋手順追加</button>
+    <button type="button" class="mini-button" id="add-step">＋手順追加</button>
+    <div id="step-list"></div>
 
     <div class="divider"></div>
 
-    <h3>補足</h3>
-    <textarea class="input-note"></textarea>
+    <textarea class="input-note" placeholder="補足"></textarea>
 
     <div class="divider"></div>
 
     <button class="save-button">💾 保存</button>
 
 </div>
+
+</div>
+
+<script src="js/create.js"></script>
+
+</body>
+</html>
