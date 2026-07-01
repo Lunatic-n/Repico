@@ -1,19 +1,13 @@
 const DB_NAME = "repico-db";
 const STORE_NAME = "recipes";
 
-let db;
-
-/* ===========================
-   DOM待ってから開始（超重要）
-=========================== */
-
 window.addEventListener("DOMContentLoaded", async () => {
 
     /* ===========================
        DB
     =========================== */
 
-    db = await openDB();
+    const db = await openDB();
 
     function openDB(){
         return new Promise((resolve) => {
@@ -41,28 +35,24 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
 
     /* ===========================
-       画像処理
+       画像
     =========================== */
 
     const photoInput = document.getElementById("photo-input");
     const photoBox = document.querySelector(".photo-box");
     const photoPreview = document.querySelector(".photo-preview");
 
-    photoBox.addEventListener("click", () => {
-        photoInput.click();
-    });
+    photoBox.addEventListener("click", () => photoInput.click());
 
     photoInput.addEventListener("change", (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
         const reader = new FileReader();
-
         reader.onload = () => {
             photoBox.classList.add("has-image");
             photoPreview.src = reader.result;
         };
-
         reader.readAsDataURL(file);
     });
 
@@ -84,9 +74,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             <button type="button" class="remove-btn">×</button>
         `;
 
-        row.querySelector(".remove-btn").addEventListener("click", () => {
-            row.remove();
-        });
+        row.querySelector(".remove-btn").onclick = () => row.remove();
 
         ingredientList.appendChild(row);
     });
@@ -97,13 +85,17 @@ window.addEventListener("DOMContentLoaded", async () => {
         row.className = "step-row";
 
         row.innerHTML = `
+            <span class="step-num">${stepList.children.length + 1}</span>
             <textarea placeholder="手順"></textarea>
             <button type="button" class="remove-btn">×</button>
         `;
 
-        row.querySelector(".remove-btn").addEventListener("click", () => {
+        row.querySelector(".remove-btn").onclick = () => {
             row.remove();
-        });
+            [...stepList.children].forEach((el, i) => {
+                el.querySelector(".step-num").textContent = i + 1;
+            });
+        };
 
         stepList.appendChild(row);
     });
@@ -114,15 +106,15 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     document.querySelector(".save-button").addEventListener("click", async () => {
 
-        const ok = confirm("保存するで？");
+        const ok = confirm("レシピを保存しますか？");
         if (!ok) return;
 
-        const ingredients = [...ingredientList.querySelectorAll(".ingredient-row")].map(row => ({
+        const ingredients = [...ingredientList.children].map(row => ({
             name: row.children[0].value,
             amount: row.children[1].value
         }));
 
-        const steps = [...stepList.querySelectorAll(".step-row")].map(row =>
+        const steps = [...stepList.children].map(row =>
             row.querySelector("textarea").value
         );
 
@@ -141,7 +133,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
         await saveRecipe(recipe);
 
-        alert("保存したで🍳");
+        alert("保存しました！🍳");
         location.href = "index.html";
     });
 
