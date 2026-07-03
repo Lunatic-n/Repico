@@ -45,6 +45,15 @@ function saveRecipe(recipe){
     });
 }
 
+function updateRecipeLocal(recipe){
+    return new Promise((resolve) => {
+        const tx = db.transaction(STORE_NAME, "readwrite");
+        const store = tx.objectStore(STORE_NAME);
+        store.put(recipe);
+        tx.oncomplete = () => resolve();
+    });
+}
+
 function deleteRecipeById(id){
     return new Promise((resolve) => {
         const tx = db.transaction(STORE_NAME, "readwrite");
@@ -324,33 +333,60 @@ window.addEventListener("DOMContentLoaded", async () => {
             try {
                 const user = await ensureSignedIn();
 
-                const count = await getShareCount(user.id);
+                let shareId = currentRecipe.shareId || null;
 
-                if (count >= SHARE_LIMIT) {
-                    shareMessage.textContent = `共有できる件数（${SHARE_LIMIT}件）の上限に達しました`;
-                    shareUrlBox.style.display = "none";
-                    shareModal.classList.add("show");
-                    return;
+                if (shareId) {
+                    /* ===== 既に共有済み：新規カウントせず、内容だけ最新化 ===== */
+
+                    const recipeForShare = await uploadRecipeImages(currentRecipe, user.id);
+
+                    const { error: updateError } = await window.supabase
+                        .from("shared_recipes")
+                        .update({ recipe_data: recipeForShare })
+                        .eq("id", shareId)
+                        .eq("owner_id", user.id);
+
+                    if (updateError) throw updateError;
+
+                } else {
+                    /* ===== 初めての共有：上限チェックしてから新規作成 ===== */
+
+                    const count = await getShareCount(user.id);
+
+                    if (count >= SHARE_LIMIT) {
+                        shareMessage.textContent = `共有できる件数（${SHARE_LIMIT}件）の上限に達しました`;
+                        shareUrlBox.style.display = "none";
+                        shareModal.classList.add("show");
+                        return;
+                    }
+
+                    const recipeForShare = await uploadRecipeImages(currentRecipe, user.id);
+
+                    const { data: inserted, error: insertError } = await window.supabase
+                        .from("shared_recipes")
+                        .insert({
+                            owner_id: user.id,
+                            recipe_data: recipeForShare
+                        })
+                        .select("id")
+                        .single();
+
+                    if (insertError || !inserted) {
+                        throw insertError || new Error("共有に失敗しました");
+                    }
+
+                    await incrementShareCount(user.id, count);
+
+                    shareId = inserted.id;
+
+                    /* ローカルのレシピにshareIdを記録して、次回以降は使い回す */
+                    currentRecipe.shareId = shareId;
+                    await updateRecipeLocal({ ...currentRecipe, id: currentId });
                 }
 
-                const recipeForShare = await uploadRecipeImages(currentRecipe, user.id);
-
-                const { data: inserted, error: insertError } = await window.supabase
-                    .from("shared_recipes")
-                    .insert({
-                        owner_id: user.id,
-                        recipe_data: recipeForShare
-                    })
-                    .select("id")
-                    .single();
-
-                if (insertError || !inserted) {
-                    throw insertError || new Error("共有に失敗しました");
-                }
-
-                await incrementShareCount(user.id, count);
-
-                const shareUrl = `${window.location.origin}${window.location.pathname.replace("view.html", "")}view.html?share=${inserted.id}`;
+                /* X等のクローラーにもOGPを見せるため、Edge Function経由のURLにする */
+                const SHARE_FUNCTION_URL = "https://suvpwczomnrxabyuzxre.functions.supabase.co/share-preview";
+                const shareUrl = `${SHARE_FUNCTION_URL}?id=${shareId}`;
 
                 const shareText = `「${currentRecipe.title}」のレシピを共有しました🍳 #れぴこ #Repico`;
                 const xIntentUrl = `https://x.com/intent/post?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
