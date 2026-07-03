@@ -76,6 +76,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     const saveButton = document.querySelector(".save-button");
 
     let imageData = null;
+    let existingShareId = null;
 
     /* ===========================
        画像圧縮
@@ -583,6 +584,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             preparations: collectPreparations(),
             steps: collectSteps(),
             supplement: document.querySelector(".input-supplement")?.value || "",
+            shareId: existingShareId,
 
             createdAt: Date.now()
         };
@@ -597,6 +599,8 @@ window.addEventListener("DOMContentLoaded", async () => {
         const existing = await getRecipeById(editingId);
 
         if (existing) {
+
+            existingShareId = existing.shareId || null;
 
             /* タイトル・説明 */
             document.querySelector(".input-title").value = existing.title || "";
