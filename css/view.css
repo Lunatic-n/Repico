@@ -1,0 +1,246 @@
+/* ===========================
+   戻る・編集・削除エリア
+=========================== */
+
+.view-actions{
+    position: absolute;
+    right: 0;
+    display: flex;
+    gap: 8px;
+}
+
+.edit-button,
+.delete-button{
+    width: 36px;
+    height: 36px;
+}
+
+.edit-button img,
+.delete-button img{
+    width: 18px;
+    height: 18px;
+}
+
+/* ===========================
+   メイン画像（表示専用）
+=========================== */
+
+.view-photo-box{
+    cursor: default;
+    border-style: solid;
+    border-color: var(--border-color);
+}
+
+.view-photo-box .photo-preview{
+    display: block;
+}
+
+.view-photo-box .photo-placeholder{
+    display: none;
+}
+
+/* ===========================
+   タイトル・説明
+=========================== */
+
+.view-title-text{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 4px 0 0;
+}
+
+.view-desc{
+    font-size: 15px;
+    color: var(--text-color);
+    opacity: 0.85;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.view-section-title{
+    font-size:20px;
+}
+
+/* ===========================
+   人数・時間（表示専用）
+=========================== */
+
+.view-meta-row{
+    margin-bottom: 4px;
+}
+
+/* ===========================
+   材料（表示専用）
+=========================== */
+
+.view-category-block{
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    background: #fff;
+}
+
+.view-category-name{
+    font-weight: bold;
+    font-size: 19px;
+    margin-bottom: 6px;
+    color: #df7334;
+}
+
+.view-ingredient-group{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 8px;
+}
+
+.view-ingredient-group:last-child{
+    margin-bottom: 0;
+}
+
+.view-ingredient-line{
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    padding: 2px 0;
+}
+
+.view-ingredient-name{
+    color: var(--text-color);
+}
+
+.view-ingredient-amount{
+    color: #888;
+}
+
+.view-or-label{
+    text-align: left; 
+    font-size: 14px;
+    padding-left: 30px;
+    color: #b8860b;
+    margin: 2px 0;
+}
+
+/* ===========================
+   下ごしらえ・手順（表示専用）
+=========================== */
+
+.view-step-row{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 10px;
+    background: #fff;
+}
+
+.view-step-number{
+    min-width: 22px;
+    flex-shrink: 0;
+    font-weight: bold;
+    color: #513e74;
+}
+
+.view-step-content{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.view-step-text{
+    font-size: 17px;
+    white-space: pre-wrap;
+}
+
+.view-step-image{
+    width: 100%;
+    aspect-ratio: 5 / 3;
+    border-radius: 10px;
+    object-fit: cover;
+    background: #eee;
+}
+
+/* ===========================
+   補足（表示専用）
+=========================== */
+
+.view-supplement{
+    border: 1px dashed #ccc;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 14px;
+    white-space: pre-wrap;
+    background: #fffdf5;
+}
+
+/* ===========================
+   共有ボタン
+=========================== */
+
+.share-button{
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 999px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+    background: #4fc3a1;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.share-button:active{
+    transform: scale(0.98);
+}
+
+/* ===========================
+   共有URLボックス
+=========================== */
+
+.modal-share-url-box{
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.modal-share-url-box input{
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 12px;
+    background: #fafafa;
+}
+
+.modal-share-url-box button{
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--main-color);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.share-x-button {
+  display: flex;
+  padding: 10px 30px;
+  background: #000;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.share-x-button:hover {
+  opacity: 0.85;
+}

@@ -1,0 +1,336 @@
+:root{
+    --background-color:#fbf5fc;
+    --text-color:#333;
+    --main-color:#8a7cff;
+    --sub-color:#eee9ff;
+    --border-color:#fbf5fc;
+    --shadow-color:rgba(187,183,199,0.08);
+}
+
+/* ===========================
+   ベースリセット
+=========================== */
+
+html {
+  min-height: 100%;
+  background: var(--background-color);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:var(--background-color);
+    color:var(--text-color);
+    font-family:'Kiwi Maru', sans-serif;
+}
+
+button{
+    cursor:pointer;
+    border:none;
+    background:none;
+}
+
+/* ===========================
+   アプリコンテナ
+=========================== */
+
+.app-container{
+    max-width:600px;
+    margin:auto;
+    padding:16px;
+}
+
+/* ===========================
+   ヘッダー
+=========================== */
+
+.header{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    margin-bottom:24px;
+}
+
+/* ロゴ */
+.logo-area{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo-image{
+    height:90px;
+    width:auto;
+    max-width:90%;
+    object-fit:contain;
+}
+
+/* ===========================
+   ヘッダーバー（左右配置）
+=========================== */
+
+.header-bar{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* 左右ボタン群 */
+.header-buttons-left,
+.header-buttons-right{
+    display:flex;
+    gap:10px;
+}
+
+/* ===========================
+   アイコンボタン（ここが修正ポイント）
+=========================== */
+
+.icon-button{
+    width:48px;
+    height:48px;
+
+    border:1px solid var(--border-color);
+    border-radius:50%;
+
+    background:var(--sub-color);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.2s;
+}
+
+.icon-button:hover{
+    transform:scale(1.05);
+}
+
+.icon-button img{
+    width:22px;
+    height:22px;
+}
+
+/* ===========================
+   検索エリア
+=========================== */
+
+.search-area{
+    margin-bottom:28px;
+}
+
+.search-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:12px 16px;
+
+    background:white;
+
+    border:1px solid var(--border-color); /* ← 枠ちゃんと維持 */
+
+    border-radius:999px;
+
+    box-shadow:0 2px 8px var(--shadow-color);
+}
+
+.search-icon{
+    width:18px;
+    height:18px;
+    opacity:.55;
+}
+
+.search-input{
+    width:100%;
+    border:none;
+    background:none;
+    font-size:16px;
+}
+
+.search-input:focus{
+    outline:none;
+}
+
+/* ===========================
+   レシピ件数
+=========================== */
+
+.recipe-summary{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+}
+
+.recipe-count{
+    font-size:14px;
+    color:#666;
+    font-weight:600;
+}
+
+#recipe-count-number{
+    color:var(--main-color);
+    font-size:16px;
+    font-weight:bold;
+}
+
+/* ===========================
+   並び替えメニュー
+=========================== */
+
+.sort-wrapper{
+    position: relative;
+}
+
+.sort-menu{
+    display: none;
+
+    position: absolute;
+    top: 56px;
+    right: 0;
+
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+
+    box-shadow: 0 4px 12px var(--shadow-color);
+
+    overflow: hidden;
+    z-index: 100;
+
+    min-width: 120px;
+}
+
+.sort-menu.show{
+    display: flex;
+    flex-direction: column;
+}
+
+.sort-option{
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 14px;
+    color: var(--text-color);
+    font-family: 'Kiwi Maru', sans-serif;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    transition: .15s;
+}
+
+.sort-option:hover{
+    background: var(--sub-color);
+}
+
+.sort-option.active{
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+/* ===========================
+   レシピ一覧
+=========================== */
+
+.recipe-list{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    padding-bottom:calc(24px + env(safe-area-inset-bottom));
+}
+
+/* ===========================
+   レシピカード
+=========================== */
+
+.recipe-card{
+    display:flex;
+    gap:12px;
+
+    padding:12px;
+
+    background:#fff;
+    border:1px solid var(--border-color);
+    border-radius:14px;
+
+    box-shadow:0 2px 8px var(--shadow-color);
+}
+
+.recipe-thumb{
+    width:100px;
+    height:100px;
+    flex-shrink:0;
+
+    border-radius:10px;
+    background:#eee;
+
+    object-fit:cover;
+}
+
+.recipe-info{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    flex:1;
+}
+
+.recipe-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom: -5px;
+}
+
+.recipe-meta{
+    font-size:14px;
+    color:#666;
+}
+
+.meta-item{
+    margin-right: 12px;
+}
+
+.recipe-tags{
+    font-size:12px;
+    color:var(--main-color);
+}
+
+.tag-chip {
+    display: inline-block;
+
+    padding: 4px 10px;
+    border-radius: 999px;
+
+    background: #eee9ff;
+    color: #645894;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    border: 1px solid #d7cfff;
+}
+
+/* ⭐サムネ1:1 */
+.thumb{
+    width:85px;
+    height:85px;
+    border-radius:10px;
+
+    object-fit:cover;
+    background:#eee;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    margin-right: px;
+}
+
+.no-img{
+    background:#eee;
+}

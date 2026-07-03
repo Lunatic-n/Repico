@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fbf5fc">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/create.css">
+<link rel="stylesheet" href="css/view.css">
+
+<title>レシピ閲覧</title>
+</head>
+
+<body>
+
+<div class="app-container">
+
+<!-- 戻るボタン・タイトル・編集/削除ボタン -->
+<div class="back-area">
+    <a href="index.html" class="icon-button back-button">
+        <img src="icons/back.svg" alt="戻る">
+    </a>
+    <span class="page-title" id="view-title">✨レシピ✨</span>
+
+    <div class="view-actions">
+        <button type="button" class="icon-button edit-button" id="edit-btn">
+            <img src="icons/edit.svg" alt="編集">
+        </button>
+        <button type="button" class="icon-button delete-button" id="delete-btn">
+            <img src="icons/delete.svg" alt="削除">
+        </button>
+    </div>
+</div>
+
+<div class="create-card">
+
+    <!-- 画像 -->
+    <div class="photo-box view-photo-box" id="main-photo-box">
+        <div class="photo-placeholder">📷</div>
+        <img class="photo-preview" id="main-photo-preview" alt="">
+    </div>
+
+    <!-- タイトル -->
+    <h1 class="view-title-text" id="recipe-title"></h1>
+
+    <!-- 説明 -->
+    <p class="view-desc" id="recipe-desc"></p>
+
+    <!-- タグ -->
+    <div id="tag-list" class="tag-list"></div>
+
+    <!-- 人数・時間 -->
+    <div class="row view-meta-row">
+        <div class="people-split">
+            <span>👥</span>
+            <span id="recipe-people"></span>
+            <span>人前</span>
+        </div>
+
+        <div class="time-split">
+            <span>⏱</span>
+            <span id="recipe-time"></span>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 材料 -->
+    <h3 class="section-title">🥕材料</h3>
+    <div id="category-list"></div>
+
+    <div class="divider"></div>
+
+    <!-- 下ごしらえ -->
+    <h3 class="section-title">🔪下ごしらえ</h3>
+    <div id="preparation-list"></div>
+
+    <div class="thin-divider"></div>
+
+    <!-- 手順 -->
+    <h3 class="section-title">🍽️手順</h3>
+    <div id="step-list"></div>
+
+    <div class="divider"></div>
+
+    <!-- 補足 -->
+    <div class="supplement" id="supplement-block" style="display:none;">
+        <h3 class="section-title">📝補足</h3>
+        <p class="view-supplement" id="supplement-text"></p>
+    </div>
+
+    <!-- 共有ボタン -->
+    <button class="share-button" id="share-btn">🔗共有</button>
+
+    <!-- 保存ボタン（共有ビューのときだけ表示） -->
+    <button class="share-button" id="save-shared-btn" style="display:none;">💾このレシピを保存</button>
+
+</div>
+
+</div>
+
+<!-- 削除確認モーダル -->
+<div class="modal-overlay" id="delete-modal">
+    <div class="modal-box">
+        <p class="modal-message">このレシピを削除しますか？</p>
+        <div class="modal-buttons">
+            <button type="button" class="modal-btn cancel" id="delete-cancel">キャンセル</button>
+            <button type="button" class="modal-btn ok" id="delete-ok">削除する</button>
+        </div>
+    </div>
+</div>
+
+<!-- 共有完了モーダル（全部入り） -->
+<div class="modal-overlay" id="share-modal">
+  <div class="modal-box">
+    <p class="modal-message" id="share-message">共有リンクを発行しました</p>
+    
+    <!-- リンクコピーエリア -->
+    <div class="modal-share-url-box" id="share-url-box" style="display:none;">
+      <input type="text" id="share-url-input" readonly>
+      <button type="button" id="share-copy-btn">コピー</button>
+    </div>
+
+    <!-- X共有ボタン -->
+    <a href="#" id="share-x-btn" class="share-x-button" ...>𝕏で共有</a>
+
+    <!-- 閉じるボタン -->
+    <div class="modal-buttons">
+      <button type="button" class="modal-btn ok" id="share-ok">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<!-- 保存確認モーダル（共有ビュー用） -->
+<div class="modal-overlay" id="save-modal">
+  <div class="modal-box">
+    <div class="modal-message">このレシピを保存しますか？</div>
+    <div class="modal-buttons">
+      <button type="button" class="modal-btn cancel" id="save-cancel">キャンセル</button>
+      <button type="button" class="modal-btn ok" id="save-ok">保存する</button>
+    </div>
+  </div>
+</div>
+
+<!-- 保存完了モーダル（共有ビュー用） -->
+<div class="modal-overlay" id="save-success-modal">
+  <div class="modal-box">
+    <div class="modal-message">保存しました</div>
+    <div class="modal-buttons">
+      <button type="button" class="modal-btn ok" id="save-success-ok">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+  window.supabase = createClient(
+    'https://suvpwczomnrxabyuzxre.supabase.co',
+    'sb_publishable_3knqAD65Fsg66G6DBLtF-Q_0RKLXVp-'
+  )
+</script>
+
+<script src="js/view.js" type="module"></script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/top.css">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fbf5fc">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+<header class="header">
+
+    <h1 class="logo-area">
+        <img class="logo-image" src="icons/logo.png">
+    </h1>
+
+    <div class="header-bar">
+
+        <div class="header-buttons-left">
+
+            <a href="info.html" class="icon-button help-button">
+                <img src="icons/help.svg">
+            </button>
+
+            <a href="create.html" class="icon-button add-button">
+                <img src="icons/add.svg">
+            </a>
+
+        </div>
+
+        <div class="header-buttons-right">
+
+            <div class="sort-wrapper">
+                <button class="icon-button sort-button" id="sort-button">
+                    <img src="icons/sort.svg">
+                </button>
+
+                <div class="sort-menu" id="sort-menu">
+                    <button type="button" class="sort-option" data-sort="newest">新しい順</button>
+                    <button type="button" class="sort-option" data-sort="oldest">古い順</button>
+                    <button type="button" class="sort-option" data-sort="title">タイトル順</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<section class="search-area">
+
+    <div class="search-box">
+
+        <img class="search-icon" src="icons/search.svg">
+
+        <input class="search-input" type="text" placeholder="レシピを検索">
+
+    </div>
+
+</section>
+
+<section class="recipe-summary">
+
+    <p class="recipe-count">
+        レシピ <span id="recipe-count-number">0</span>件
+    </p>
+
+</section>
+
+<section class="recipe-list"></section>
+
+</div>
+
+<script type="module" src="js/top.js"></script>
+
+</body>
+</html>

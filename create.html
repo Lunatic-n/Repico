@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fbf5fc">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/create.css">
+
+<title>レシピ作成</title>
+</head>
+
+<body>
+
+<div class="app-container">
+
+<!-- 戻るボタン（icon-button統一） -->
+<div class="back-area">
+    <a href="index.html" class="icon-button back-button">
+        <img src="icons/back.svg" alt="戻る">
+    </a>
+    <span class="page-title">✨レシピ作成✨</span>
+</div>
+
+<div class="create-card">
+
+    <!-- 画像 -->
+    <label class="photo-box">
+        <input type="file" id="photo-input" accept="image/*" hidden>
+
+        <div class="photo-placeholder">📷</div>
+
+        <img class="photo-preview" alt="">
+    </label>
+
+        <!-- タイトル -->
+    <input class="input-title large" placeholder="タイトル">
+
+    <!-- 説明 -->
+    <input class="input-desc" placeholder="説明">
+
+    <!-- タグ -->
+    <input class="input-tags" id="tag-input" placeholder="タグ（Enterで追加・最大3つ）">
+
+    <div id="tag-list" class="tag-list"></div>
+
+    <!-- 人数・時間 -->
+    <div class="row">
+        <div class="people-split">
+            <span>👥</span>
+            <input class="input-people" placeholder="人数">
+            <span>人前</span>
+        </div>
+
+        <div class="time-split">
+            <span>⏱</span>
+            <input type="number" class="input-hour" placeholder="h">
+            <span>時間</span>
+
+            <input type="number" class="input-minute" placeholder="min">
+            <span>分</span>
+        </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 材料 -->
+    <h3 class="section-title">🥕材料</h3>
+
+    <button id="add-category">＋材料カテゴリを追加</button>
+
+    <div id="category-list"></div>
+
+    <div class="divider"></div>
+
+    <!-- 下ごしらえ -->
+    <h3 class="section-title">🔪下ごしらえ</h3>
+    <button id="add-preparation-step">＋下準備を追加</button>
+    <div id="preparation-list"></div>
+
+    <div class="thin-divider"></div>
+
+    <!-- 手順 -->
+    <h3 class="section-title">🍽️手順</h3>
+    <button id="add-step">＋手順を追加</button>
+    <div id="step-list"></div>
+
+    <div class="divider"></div>
+
+    <!-- 補足 -->
+    <div class="supplement">
+      <h3 class="section-title">📝補足</h3>
+      <textarea class="input-supplement" placeholder="補足"></textarea>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 保存 -->
+    <button class="save-button">💾保存</button>
+
+    <!-- 確認モーダル -->
+    <div class="modal-overlay" id="confirm-modal">
+        <div class="modal-box">
+            <p class="modal-message">保存しますか？</p>
+            <div class="modal-buttons">
+                <button type="button" class="modal-btn cancel" id="confirm-cancel">キャンセル</button>
+                <button type="button" class="modal-btn ok" id="confirm-ok">保存する</button>
+            </div>
+        </div>
+    </div>
+
+<!-- 完了モーダル -->
+<div class="modal-overlay" id="done-modal">
+    <div class="modal-box">
+        <p class="modal-message">保存しました</p>
+        <div class="modal-buttons">
+            <button type="button" class="modal-btn ok" id="done-ok">OK</button>
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+<script src="js/create.js" type="module"></script>
+
+</body>
+</html>
