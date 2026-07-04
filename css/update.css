@@ -1,0 +1,159 @@
+:root {
+  --background-color: #fbf5fc;
+  --text-color: #5f4969;
+  --main-color: #eb695f;
+  --sub-color: #eee9ff;
+  --border-color: #fbf5fc;
+  --shadow-color: rgba(187, 183, 199, 0.08);
+}
+
+/* ===========================
+   ベースリセット
+=========================== */
+
+html {
+  min-height: 100%;
+  background: var(--background-color);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:var(--background-color);
+    color:var(--text-color);
+    font-family:'Kiwi Maru', sans-serif;
+}
+
+button{
+    cursor:pointer;
+    border:none;
+    background:none;
+}
+
+.app-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.logo-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-image {
+  height: 90px;
+  width: auto;
+  max-width: 90%;
+  object-fit: contain;
+}
+
+/* header-bar は back-button の基準位置にする */
+.header-bar {
+  position: relative;
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.header-buttons-left {
+  display: flex;
+  gap: 10px;
+  z-index: 1;
+}
+
+/* ===========================
+   アップデート情報（画面中央固定）
+=========================== */
+
+.header-alert {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  padding: 15px;
+}
+
+.update-content {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* ===========================
+   アイコンボタン
+=========================== */
+
+.icon-button{
+    width:48px;
+    height:48px;
+
+    border:1px solid var(--border-color);
+    border-radius:50%;
+
+    background:var(--sub-color);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.2s;
+}
+
+.icon-button:hover{
+    transform:scale(1.05);
+}
+
+.icon-button img{
+    width:22px;
+    height:22px;
+}
+
+/* ===========================
+  説明コンテンツ
+=========================== */
+
+.info-content{
+  background:#fff;
+  border:1px solid var(--border-color);
+  border-radius:14px;
+  box-shadow:0 2px 8px var(--shadow-color);
+  padding:20px;
+  margin-bottom: 25px;
+}
+
+.info-title{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:12px;
+  color:var(--main-color);
+}
+
+.info-text{
+  font-size:15px;
+  line-height:1.7;
+  color:var(--text-color);
+}
+
+.howto-title {
+    padding-left: 30%;
+    align-items: center;
+    color: #f08d31;
+    margin-bottom: 20px;
+}
