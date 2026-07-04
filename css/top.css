@@ -89,7 +89,24 @@ button{
 }
 
 /* ===========================
-   アイコンボタン（ここが修正ポイント）
+   アップデート情報
+=========================== */
+
+.header-alert {
+    margin-left: -12%;
+    background:#fff;
+    border:1px solid var(--border-color);
+    border-radius:14px;
+    box-shadow:0 2px 8px var(--shadow-color);
+    padding:15px;
+}
+
+.update-content {
+    font-size: 16px;
+}
+
+/* ===========================
+   アイコンボタン
 =========================== */
 
 .icon-button{
