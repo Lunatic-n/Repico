@@ -184,7 +184,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         const supplementText = document.getElementById("supplement-text");
 
         if (recipe.supplement) {
-            supplementText.textContent = recipe.supplement;
+            supplementText.innerHTML = linkifyText(escapeHTML(recipe.supplement));
             supplementBlock.style.display = "block";
         } else {
             supplementBlock.style.display = "none";
@@ -275,6 +275,14 @@ window.addEventListener("DOMContentLoaded", async () => {
         const div = document.createElement("div");
         div.textContent = str;
         return div.innerHTML;
+    }
+
+    /* テキスト中のURLを<a>タグに変換（必ずescapeHTML後の文字列に対して使う） */
+    function linkifyText(escapedStr){
+        const urlPattern = /(https?:\/\/[^\s<]+)/g;
+        return escapedStr.replace(urlPattern, (url) => {
+            return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+        });
     }
 
     /* ===========================
