@@ -1,0 +1,792 @@
+:root{
+    --background-color:#fbf5fc;
+    --text-color:#57495e;
+    --main-color:#8a7cff;
+    --sub-color:#eee9ff;
+    --border-color:#e8e3f7;
+}
+
+body{
+    margin:0;
+    font-family:'Kiwi Maru', sans-serif;
+    background:var(--background-color);
+    color:var(--text-color);
+}
+
+.app-container{
+    max-width:600px;
+    margin:0 auto;
+    padding:16px;
+}
+
+.create-card{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+/* ===========================
+   フォント
+=========================== */
+
+input,
+textarea,
+button{
+    font-family:'Kiwi Maru', sans-serif;
+}
+
+/* ===========================
+   プレースホルダー
+=========================== */
+
+input::placeholder,
+textarea::placeholder{
+    font-family:'Kiwi Maru', sans-serif;
+    color:#b8b0d6;
+    opacity:1;
+}
+
+/* ===========================
+   icon-button
+=========================== */
+
+.icon-button{
+    width:40px;
+    height:40px;
+
+    border:1px solid var(--border-color);
+    border-radius:50%;
+
+    background:var(--sub-color);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.2s;
+}
+
+.icon-button:hover{
+    transform:scale(1.05);
+}
+
+.icon-button img{
+    width:22px;
+    height:22px;
+}
+
+.back-area{
+    position: relative;
+    display:flex;
+    align-items:center;
+    margin-bottom:5px;
+}
+
+.back-button{
+    text-decoration:none;
+    margin-bottom:12px;
+}
+
+.page-title{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-45%);
+    font-size:22px;
+    font-weight:bold;
+    color: #eb9e3a;
+    margin-bottom: 12px;
+}
+
+/* ===========================
+   画像
+=========================== */
+
+.photo-box{
+    width:99%;
+    aspect-ratio:4 / 3;
+    border:2px dashed #aaa;
+    border-radius:12px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+}
+
+.photo-placeholder{
+    position:absolute;
+    font-size:28px;
+    opacity:0.6;
+    pointer-events:none;
+}
+
+.photo-preview{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+
+.photo-box.has-image .photo-preview{
+    display:block;
+}
+
+.photo-box.has-image .photo-placeholder{
+    display:none;
+}
+
+.row-photo-box{
+    width: 100%;
+    aspect-ratio: 5 / 3;      /* .photo-boxと同じ比率 */
+    border: 2px dashed #aaa;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+/* 下準備側だけのサイズ */
+.preparation-row .row-photo-box{
+    aspect-ratio: 5 / 3;
+    margin-left: 9%;
+    width: 92%;
+    height: 92%;
+}
+
+/* 手順側だけのサイズ */
+.step-row .row-photo-box{
+    aspect-ratio: 5 / 3;   /* 好きな比率に */
+}
+
+.row-photo-placeholder{
+    position: absolute;
+    font-size: 20px;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.row-photo-preview{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.row-photo-box.has-image .row-photo-preview{
+    display: block;
+}
+
+.row-photo-box.has-image .row-photo-placeholder{
+    display: none;
+}
+
+.row-photo-remove-btn{
+    display: none;
+
+    position: absolute;
+    top: 4px;
+    right: 4px;
+
+    width: 22px;
+    height: 22px;
+
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border: none;
+    background: #ffe0e0;
+    color: #c0392b;
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-size: 12px;
+    line-height: 1;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    z-index: 2;
+}
+
+.row-photo-box.has-image .row-photo-remove-btn{
+    display: flex;
+}
+
+/* ===========================
+   入力
+=========================== */
+
+.input-title{
+    font-size:23px;
+    font-weight:bold;
+    width:93%;
+    padding:10px 12px;
+    border:1px solid var(--border-color);
+    border-radius:10px;
+    background:#fafafa;
+    outline:none;
+}
+
+.input-tags{
+    margin-bottom: -15px;
+}
+
+.input-tags,
+.input-desc{
+    width:93%;
+    padding:10px 12px;
+    border:1px solid var(--border-color);
+    border-radius:10px;
+    font-size:14px;
+    background:#fafafa;
+    outline:none;
+}
+
+/* ===========================
+   タグ
+=========================== */
+
+.tag-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:6px;
+}
+
+.tag-item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    padding:6px 10px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    border-radius:999px;
+
+    background:#eee9ff;
+    font-size:15px;
+    color:#645894;
+}
+
+.tag-remove{
+    border:none;
+    background:none;
+    cursor:pointer;
+}
+
+/* ===========================
+   横並び
+=========================== */
+
+.row{
+    width: 100%;
+    display:flex;
+    gap:10px;
+    margin-bottom: 10px;
+}
+
+.input-people{
+    height: 32px;
+    width: 60%;
+    padding: 6px;
+    text-align: center;
+
+    border:1px solid var(--border-color);
+    border-radius:10px;
+    font-size:14px;
+    background:#fafafa;
+    outline:none;
+}
+
+.people-split {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.people-split span {
+    font-size: 20px;
+    padding-bottom: 4px;
+}
+
+.input-hour {
+  height: 32px;
+  width: 30%;
+  padding: 6px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  min-width: 32px; /* 40px → 32px：もう少し縮められるように */
+  flex-shrink: 1;   /* 0 → 1：足りない時は縮んでいい、と許可する */
+}
+
+.input-minute {
+  height: 32px;
+  width: 50%;
+  padding: 6px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  min-width: 32px;
+  flex-shrink: 1;
+}
+
+.time-split {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.people-split,
+.time-split {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  flex: 1;
+}
+
+.people-split span,
+.time-split span {
+  font-size: 1em;
+  padding-bottom: 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: fit-content;
+}
+
+/* ===========================
+   区切り線
+=========================== */
+
+.divider{
+    height:1px;
+    background:#baa3c7;
+    margin-bottom: 10px;
+}
+
+.thin-divider{
+    height:1px;
+    background:#ded2e6;
+    margin-top: 6px;
+    margin-bottom: 8px;
+}
+
+/* ===========================
+   見出し
+=========================== */
+
+.section-title{
+    font-weight:bold;
+    font-size:20px;
+    color:#513e74;
+    margin-top: -5px;
+    margin-bottom: -2px;
+}
+
+/* ===========================
+   ボタン
+=========================== */
+
+button{
+    font-family:'Kiwi Maru', sans-serif;
+}
+
+#add-category{
+    background:#f7ad5a;
+    color:#fff;
+
+    width:100%;
+    padding:12px 14px;
+    border-radius:999px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+    margin-bottom: 15px;
+}
+
+#add-preparation-step{
+    background:#9cc9f3;
+    color:#fff;
+
+    width:100%;
+    padding:12px 14px;
+    border-radius:999px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+    margin-bottom: 10px;
+}
+
+#add-step{
+    background:#c99cf3;
+    color:#fff;
+
+    width:100%;
+    padding:12px 14px;
+    border-radius:999px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+    margin-bottom: 8px;
+}
+
+.category-remove-btn {
+    border: none;
+    background: #ffe0e0;
+    color: #c0392b;
+    border-radius: 8px;
+    padding: 7px 10px;
+    cursor: pointer;
+}
+
+.ingredient-remove-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: #ffe0e0;
+    border-radius: 5px;
+    margin-top: 2px;
+
+    border: none;
+    background: #ffe0e0;
+    color: #c0392b;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* ===========================
+   材料セクション
+=========================== */
+
+.category-block {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #fff;
+}
+
+.category-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.category-input {
+    width: 95%;
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 18px;
+    font-family: inherit;
+    background: #fafafa;
+}
+
+.add-ingredient-btn {
+    width: 100%;
+    margin-top: 8px;
+
+    padding: 10px 14px;
+    border: none;
+    border-radius: 999px;
+
+    background: #ec919e;
+    color: #fff;
+
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.add-ingredient-btn:hover {
+    transform: scale(1.02);
+}
+
+.add-ingredient-btn:active {
+    transform: scale(0.98);
+}
+
+.ingredient-group {
+  width: 97%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+  padding: 5px;
+  border: 1px dashed #ffffff;
+  border-radius: 6px;
+}
+
+.ingredient-option {
+  display: flex;
+  gap: 4px;
+}
+
+.ingredient-option input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: inherit;
+    background: #fafafa;
+}
+
+.or-label {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  color: #888;
+  transform: translateX(-30%);
+}
+
+.add-or-btn {
+  width: 45%;
+  align-self: flex-start;
+  font-size: 0.85em;
+  margin-top: 2px;
+
+  padding: 10px 14px;
+  border: none;
+  border-radius: 999px;
+
+  background: #ec919e;
+  color: #fff;
+
+  font-weight: bold;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.add-or-btn:hover {
+    transform: scale(1.02);
+}
+
+/* ===========================
+   レシピ
+=========================== */
+
+.preparation-content{
+    flex: 1;                 /* 追加：横幅をちゃんと確保 */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;             /* 追加：flex内でtextareaが縮められるように */
+}
+
+#add-preparation-step {
+  background: #9cc3ff;
+  color: #fff;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: .2s;
+  margin-bottom: 15px;
+}
+
+.preparation-row {
+  display: flex;
+  align-items: flex-start;   /* center → flex-start に変更 */
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.preparation-remove-btn {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border: none;
+  background: #ffe0e0;
+  color: #c0392b;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;   /* 追加：textareaの1行目と高さを合わせる */
+}
+
+.step-row {
+  display: flex;
+  align-items: flex-start;   /* center → flex-start に変更 */
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.step-number {
+  position: relative;
+  top: 10px;
+  min-width: 24px;
+  flex-shrink: 0;
+  text-align: right;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.preparation-row textarea,
+.step-row textarea {
+  box-sizing: border-box;
+  flex: 1 1 auto;   /* flex:1 → flex:1 1 auto に変更 */
+  padding: 15px 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  background: #fafafa;
+  resize: none;
+  overflow:hidden
+}
+
+.step-remove-btn {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border: none;
+  background: #ffe0e0;
+  color: #c0392b;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;   /* 追加：textareaの1行目と高さを合わせる */
+}
+
+/* ===========================
+   補足
+=========================== */
+
+.supplement {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input-supplement {
+  margin-top: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1 1 auto;   /* flex:1 → flex:1 1 auto に変更 */
+  padding: 15px 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  background: #fafafa;
+  resize: none;
+  overflow:hidden
+}
+
+/* ===========================
+   保存ボタン
+=========================== */
+
+.save-button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:999px;
+    margin-top: 25px;
+    margin-bottom: 60px;
+
+    background:var(--main-color);
+    color:white;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+    transition:.2s;
+}
+
+/* ===========================
+   モーダル
+=========================== */
+
+.modal-overlay{
+    display: none;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.4);
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1000;
+}
+
+.modal-overlay.show{
+    display: flex;
+}
+
+.modal-box{
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 20px;
+    width: 80%;
+    max-width: 300px;
+
+    text-align: center;
+
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.modal-message{
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.modal-buttons{
+    display: flex;
+    gap: 10px;
+}
+
+.modal-btn{
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 999px;
+    font-weight: bold;
+    font-family: 'Kiwi Maru', sans-serif;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.modal-btn:active{
+    transform: scale(0.96);
+}
+
+.modal-btn.cancel{
+    background: var(--sub-color);
+    color: var(--text-color);
+}
+
+.modal-btn.ok{
+    background: var(--main-color);
+    color: #fff;
+}
+
+.save-button:active{
+    transform:scale(0.98);
+}
