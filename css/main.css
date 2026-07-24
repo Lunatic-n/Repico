@@ -131,12 +131,27 @@ button{
 
   text-align: center;
   padding: 10px 0;
+  margin-bottom: 8px;
 
   background: #fffbfe;
   border-top: 1px solid #e2c8ff;
 
   font-size: 14px;
   color: #a289b3;
+}
+
+.update-dot {
+    display:inline-block;
+
+    width:8px;
+    height:8px;
+
+    margin-left:5px;
+
+    background:#ff4b6e;
+    border-radius:50%;
+
+    vertical-align:middle;
 }
 
 /* ===========================

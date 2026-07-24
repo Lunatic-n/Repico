@@ -198,4 +198,19 @@ window.addEventListener("DOMContentLoaded", async () => {
             btn.classList.toggle("active", btn.dataset.sort === currentSort);
         });
     }
+
+    // アップデート通知
+    const versionLink = document.getElementById("version-link");
+    const dot = document.getElementById("update-dot");
+
+    if (versionLink && dot) {
+
+        const latestVersion = versionLink.textContent.trim();
+        const seenVersion = localStorage.getItem("updateSeen");
+
+        if (seenVersion === latestVersion) {
+            dot.style.display = "none";
+        }
+    }
+
 });
