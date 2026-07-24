@@ -357,7 +357,7 @@ window.addEventListener("DOMContentLoaded", async () => {
                     const { error: updateError } = await window.supabase
                         .from("shared_recipes")
                         .update({ recipe_data: recipeForShare })
-                        .eq("id", shareId)
+                        .eq("short_id", shareId)
                         .eq("owner_id", user.id);
 
                     if (updateError) throw updateError;
@@ -394,17 +394,17 @@ window.addEventListener("DOMContentLoaded", async () => {
 
                     await incrementShareCount(user.id, count);
 
-                    shareId = inserted.id;
+                    shareId = inserted.short_id;
                     currentRecipe.shortId = inserted.short_id;
 
                     /* ローカルのレシピにshareIdを記録して、次回以降は使い回す */
-                    currentRecipe.shareId = shareId;
+                    currentRecipe.shareId = inserted.short_id;
                     await updateRecipeLocal({ ...currentRecipe, id: currentId });
                 }
 
                 /* X等のクローラーにもOGPを見せるため、Edge Function経由のURLにする */
                 const SHARE_FUNCTION_URL = "https://suvpwczomnrxabyuzxre.functions.supabase.co/share-preview";
-                const shareUrl = `${SHARE_FUNCTION_URL}?id=${currentRecipe.shortId}`;
+                const shareUrl = `${SHARE_FUNCTION_URL}?id=${shareId}`;
 
                 const shareText = `「${currentRecipe.title}」のレシピを共有しました🍳 #れぴこ #Repico`;
                 const xIntentUrl = `https://x.com/intent/post?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
