@@ -48,7 +48,7 @@ Deno.serve(async (req) => {
     const { data, error } = await supabase
         .from("shared_recipes")
         .select("recipe_data")
-        .eq("id", shareId)
+        .eq("short_id", id)
         .maybeSingle();
 
     if (error || !data) {
