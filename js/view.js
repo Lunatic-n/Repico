@@ -105,7 +105,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         const { data, error } = await window.supabase
             .from("shared_recipes")
             .select("recipe_data")
-            .eq("id", shareParam)
+            .eq("short_id", shareParam)
             .maybeSingle();
 
         if (error || !data) {
