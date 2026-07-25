@@ -1,8 +1,8 @@
 {
   "name": "れぴこ",
   "short_name": "れぴこ",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "/Repico/index.html",
+  "scope": "/Repico/",
   "display": "standalone",
   "background_color": "#fbf5fc",
   "theme_color": "#8a7cff",
