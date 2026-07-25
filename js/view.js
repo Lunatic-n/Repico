@@ -348,22 +348,30 @@ window.addEventListener("DOMContentLoaded", async () => {
                 const user = await ensureSignedIn();
 
                 let shareId = currentRecipe.shareId || null;
+                let needsNewShare = !shareId;
 
                 if (shareId) {
                     /* ===== 既に共有済み：新規カウントせず、内容だけ最新化 ===== */
 
                     const recipeForShare = await uploadRecipeImages(currentRecipe, user.id);
 
-                    const { error: updateError } = await window.supabase
+                    const { data: updatedRows, error: updateError } = await window.supabase
                         .from("shared_recipes")
                         .update({ recipe_data: recipeForShare })
                         .eq("short_id", shareId)
-                        .eq("owner_id", user.id);
+                        .eq("owner_id", user.id)
+                        .select("short_id");
 
                     if (updateError) throw updateError;
 
-                } else {
-                    /* ===== 初めての共有：上限チェックしてから新規作成 ===== */
+                    if (!updatedRows || updatedRows.length === 0) {
+                        /* 移行前の古いshareId（旧UUID形式）等、該当行が無い場合は新規共有として扱う */
+                        needsNewShare = true;
+                    }
+                }
+
+                if (needsNewShare) {
+                    /* ===== 初めての共有（または旧形式からの移行）：上限チェックしてから新規作成 ===== */
 
                     const count = await getShareCount(user.id);
 
