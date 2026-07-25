@@ -354,16 +354,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 
                     const recipeForShare = await uploadRecipeImages(currentRecipe, user.id);
 
-                    const { data: existingShare, error: fetchError } = await window.supabase
-                        .from("shared_recipes")
-                        .select("short_id")
-                        .eq("id", shareId)
-                        .single();
-
-                    if (fetchError) throw fetchError;
-
-                    currentRecipe.shortId = existingShare.short_id;
-
                     const { error: updateError } = await window.supabase
                         .from("shared_recipes")
                         .update({ recipe_data: recipeForShare })
@@ -405,7 +395,6 @@ window.addEventListener("DOMContentLoaded", async () => {
                     await incrementShareCount(user.id, count);
 
                     shareId = inserted.short_id;
-                    currentRecipe.shortId = inserted.short_id;
 
                     /* ローカルのレシピにshareIdを記録して、次回以降は使い回す */
                     currentRecipe.shareId = inserted.short_id;
