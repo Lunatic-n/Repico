@@ -7,6 +7,10 @@
     --shadow-color:rgba(187,183,199,0.08);
 }
 
+input, textarea {
+  pointer-events: auto !important;
+}
+
 /* ===========================
    ベースリセット
 =========================== */
