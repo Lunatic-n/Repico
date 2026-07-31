@@ -43,6 +43,10 @@
 
         <div class="header-buttons-right">
 
+            <button class="icon-button import-button" id="import-button">
+                <span>📥</span>
+            </button>
+
             <div class="sort-wrapper">
                 <button class="icon-button sort-button" id="sort-button">
                     <img src="icons/sort.svg">
@@ -91,6 +95,52 @@
   <span class="update-dot" id="update-dot"></span>
   </a>
 </footer>
+
+<!-- インポート：ID入力モーダル -->
+<div class="modal-overlay" id="import-modal">
+    <div class="modal-box">
+        <p class="modal-message">保存したいレシピのIDを入力してください</p>
+        <input type="text" id="import-id-input" class="import-id-input" placeholder="共有ID">
+        <p class="import-error" id="import-error" style="display:none;"></p>
+        <div class="modal-buttons">
+            <button type="button" class="modal-btn cancel" id="import-cancel">キャンセル</button>
+            <button type="button" class="modal-btn ok" id="import-fetch-btn">インポート</button>
+        </div>
+    </div>
+</div>
+
+<!-- インポート：確認モーダル -->
+<div class="modal-overlay" id="import-confirm-modal">
+    <div class="modal-box">
+        <p class="modal-message">このレシピを保存しますか？</p>
+        <div class="import-preview">
+            <img id="import-preview-thumb" class="import-preview-thumb" alt="">
+            <div id="import-preview-title" class="import-preview-title"></div>
+        </div>
+        <div class="modal-buttons">
+            <button type="button" class="modal-btn cancel" id="import-confirm-cancel">キャンセル</button>
+            <button type="button" class="modal-btn ok" id="import-confirm-ok">保存する</button>
+        </div>
+    </div>
+</div>
+
+<!-- インポート：完了モーダル -->
+<div class="modal-overlay" id="import-success-modal">
+    <div class="modal-box">
+        <p class="modal-message">保存しました</p>
+        <div class="modal-buttons">
+            <button type="button" class="modal-btn ok" id="import-success-ok">閉じる</button>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+  window.supabase = createClient(
+    'https://suvpwczomnrxabyuzxre.supabase.co',
+    'sb_publishable_3knqAD65Fsg66G6DBLtF-Q_0RKLXVp-'
+  )
+</script>
 
 <script type="module" src="js/top.js"></script>
 
